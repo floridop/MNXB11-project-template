@@ -27,7 +27,10 @@ tail -n +14 "$input_file" > "$temp_file"
 process_data_line() {
   line="$1"
   # Removing if any leading spaces and extra semicolons are present
+  STARTSED=`date +%s.%N`
   line="$(echo "$line" | sed -e 's/^[[:space:]]*//;s/[[:space:]]*$//;s/;;/;/g')"
+  ENDSED=`date +%s.%N`
+  checkdiff "seddiff" $STARTSED $ENDSED
 
   STARTREGEXP=`date +%s.%N` 
   # Checking if the line contains valid data like bellow format otherwise -(skip headers and empty lines)
