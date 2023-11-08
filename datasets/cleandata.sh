@@ -1,9 +1,11 @@
 #!/bin/bash 
 
-marktime(){
-MESSAGE=$1
-
-echo `date +%s.%N` $MESSAGE >> perf.log
+checkdiff(){
+DIFF_MESSAGE=$1
+DIFF_START=$2
+DIFF_END=$3
+DIFF_RESULT=$(bc <<< $DIFF_END-$DIFF_START)
+echo $DIFF_MESSAGE: $DIFF_RESULT >> perf.log
 
 }
 
@@ -27,12 +29,13 @@ process_data_line() {
   # Removing if any leading spaces and extra semicolons are present
   line="$(echo "$line" | sed -e 's/^[[:space:]]*//;s/[[:space:]]*$//;s/;;/;/g')"
 
-  marktime "startregexp"
+  STARTREGEXP=`date +%s.%N` 
   # Checking if the line contains valid data like bellow format otherwise -(skip headers and empty lines)
   if [[ ! "$line" =~ ^[0-9]{4}-[0-9]{2}-[0-9]{2} ]]; then
     return
   fi
-  marktime "endregexp"
+  ENDREGEXP=`date +%s.%N`
+  checkdiff "regexpdiff" $STARTREGEXP $ENDREGEXP
 
   # Extract the required fields as columns (Date, Time, and Temperature)
   date="$(echo "$line" | cut -d ';' -f 1)"
@@ -44,8 +47,9 @@ process_data_line() {
 }
 # Process the input file and save the results to the output file
 cat "$temp_file"  |while IFS= read -r line; do
-  marktime "startwhile"
+  STARTWHILE=`date +%s.%N`
   process_data_line "$line"
-  marktime "endwhile"
+  ENDWHILE=`date +%s.%N`
+  checkdiff "whilediff" $STARTWHILE $ENDWHILE
 done > "$output_file"
 
