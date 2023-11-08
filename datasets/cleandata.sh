@@ -1,5 +1,12 @@
 #!/bin/bash 
 
+marktime(){
+MESSAGE=$1
+
+echo `date +%s.%N` $MESSAGE >> perf.log
+
+}
+
 # putting our input and output file names into two variables
 input_file="smhi-opendata_1_53430_20231007_155558_Lund.csv"
 output_file="processed_data.csv"
@@ -20,10 +27,12 @@ process_data_line() {
   # Removing if any leading spaces and extra semicolons are present
   line="$(echo "$line" | sed -e 's/^[[:space:]]*//;s/[[:space:]]*$//;s/;;/;/g')"
 
+  marktime "startregexp"
   # Checking if the line contains valid data like bellow format otherwise -(skip headers and empty lines)
   if [[ ! "$line" =~ ^[0-9]{4}-[0-9]{2}-[0-9]{2} ]]; then
     return
   fi
+  marktime "endregexp"
 
   # Extract the required fields as columns (Date, Time, and Temperature)
   date="$(echo "$line" | cut -d ';' -f 1)"
@@ -35,6 +44,8 @@ process_data_line() {
 }
 # Process the input file and save the results to the output file
 cat "$temp_file"  |while IFS= read -r line; do
+  marktime "startwhile"
   process_data_line "$line"
+  marktime "endwhile"
 done > "$output_file"
 
