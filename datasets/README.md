@@ -11,15 +11,16 @@ the official "SMHI - Sveriges meteorologiska och hydrologiska institut"
 website, <https://www.smhi.se>
 
 The files were downloaded at the page:
-<https://www.smhi.se/data/meteorologi/ladda-ner-meteorologiska-observationer/#param=airtemperatureInstant,stations=core>
+<https://www.smhi.se/data/temperatur-och-vind/temperatur/airtemperatureInstant#h-Langatemperaturserier>
 
 They represent the _air temperature_ collected by a given station, excluding 
 the last three months at the time these datasets where downloaded.
 
 The filenames are the same as the original from SMHI but the 
-filename has been suffixed with `_Cityname` to match the city name, for ease of use. 
+filename has been suffixed with `_Cityname-place` to match 
+the city name and location where the data was taken - if any specified. 
 Mind that in some cities there are more than one station, 
-the filename alone does not clarify which station.
+the filename alone does not necessarily clarify which station.
 
 As a bonus we included some of the oldest historical data for Uppsala that 
 has a different format and it has been corrected to give a more accurate 
@@ -30,6 +31,6 @@ It has been downloaded from <https://www.smhi.se/data/meteorologi/temperatur/upp
 The content of the files has been left untouched.
 
 The use of this data is covered by the statements at this link:
-<https://www.smhi.se/data/oppna-data/information-om-oppna-data/villkor-for-anvandning-1.30622>
+<https://www.smhi.se/data/om-smhis-data/villkor-for-anvandning>
 
 If you wish you can download additional data from SMHI provided that you follow their Terms Of Use.
