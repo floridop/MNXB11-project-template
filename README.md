@@ -26,7 +26,7 @@ The main files that can be a starting point are:
   - This file contains a sample `main` function for your project. You should start with this file if you want to build the project as a C++ binary instead of using the ROOT interpreter.
 - [Makefile](Makefile)
   - This file gives the `make` utility instructions on how to build different targets. For your convenience there is also a `clean` target that can be used to delete built files to start anew.
-  - You should use this file if you plan to automate the build of your project.
+  - You should use this file if you plan to automate the C++ build of your project, but don't use it as a script. It is meant for C++ stuff only - use a BASH script for environment variables and task automation instead.
 
 We have also included three special files in the base of the repository 
 - [.gitignore](.gitignore)
