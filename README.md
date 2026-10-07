@@ -18,6 +18,16 @@ In the template you can find a small translation unit called Example (in [src/Ex
 
 There is a demonstration of a toy project you can use for inspiration at [EinarElen/MNXB11-project-demo](https://github.com/EinarElen/MNXB11-project-demo). You should not copy code from this repository. There are some intentional bugs hiding in there, see if you can spot them. 
 
+The main files that can be a starting point are:
+- [rootlogon.C](rootlogon.C)
+  - This file contains code that ROOT will execute automatically whenever you start it, a good place to place general style choices you want to make or anything else you always want to run!
+  - Be careful to not include anything that depends on your particular machine here (e.g. absolute paths)
+- [main.cxx](main.cxx)
+  - This file contains a sample `main` function for your project. You should start with this file if you want to build the project as a C++ binary instead of using the ROOT interpreter.
+- [Makefile](Makefile)
+  - This file gives the `make` utility instructions on how to build different targets. For your convenience there is also a `clean` target that can be used to delete built files to start anew.
+  - You should use this file if you plan to automate the build of your project.
+
 We have also included three special files in the base of the repository 
 - [.gitignore](.gitignore)
   - This file contains regular expressions that git tells git that it shouldn't add certain file to your repository. 
@@ -32,9 +42,6 @@ We have also included three special files in the base of the repository
   clang-format src/Example.cxx -i
   ```
   - The `.clang-format` file holds the configuration that clang-format will use to determine how to format your code. By default, it will be formatted according to Google's style but you can pick any that you like from https://clang.llvm.org/docs/ClangFormatStyleOptions.html
-- [rootlogon.C](rootlogon.C)
-  - This file contains code that ROOT will execute automatically whenever you start it, a good place to place general style choices you want to make or anything else you always want to run! 
-  - Be careful to not include anything that depends on your particular machine here (e.g. absolute paths)
 
 The [datasets](datasets) folder contains open data from SMHI and a README.md with further information about it.
 
