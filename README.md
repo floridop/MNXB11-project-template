@@ -49,7 +49,7 @@ We have included a basic Makefile here which should be familiar to you. It follo
 
 By default, the `all` target will be run which 
 - Compiles any `.cxx` files in the `src/` directory into object files 
-- Compiles `main.cxx` and links with all the object files in `src/`
+- Compiles [`main.cxx`](main.cxx) and links with all the object files in `src/`
 
 You can run the `clean` target (`make clean`) to remove any object files that have been produced as well as the `main` executable.
 
