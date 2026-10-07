@@ -35,10 +35,15 @@ We have also included three special files in the base of the repository
 - [rootlogon.C](rootlogon.C)
   - This file contains code that ROOT will execute automatically whenever you start it, a good place to place general style choices you want to make or anything else you always want to run! 
   - Be careful to not include anything that depends on your particular machine here (e.g. absolute paths)
-# Building the project
 
 The [datasets](datasets) folder contains open data from SMHI and a README.md with further information about it.
 
+The [scripts](scripts) folder contains BASH scripts examples that can be used to create a build script or a launcher/wrapper for your binaries or for your SLURM submission
+
+The [slurm](slurm) folder contains an example SLURM SBATCH script that calls one of the project launcher scripts above.
+
+
+# Building the project
 
 We have included a basic Makefile here which should be familiar to you. It follows the same project structure that we have been using in the course. When you add a new translation unit to the project, you have update the dependencies in the Makefile. 
 
@@ -46,7 +51,7 @@ By default, the `all` target will be run which
 - Compiles any `.cxx` files in the `src/` directory into object files 
 - Compiles `main.cxx` and links with all the object files in `src/`
 
-You can run the `clean` target to remove any object files that have been produced as well as the `main` executable.
+You can run the `clean` target (`make clean`) to remove any object files that have been produced as well as the `main` executable.
 
 ## Adding external software libraries
 
